@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career — MESSI: The Eternal King</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── PAGE HERO ─────────────────────────────────── */
+.page-hero {
+  min-height: 55vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 120px 7% 6rem;
+  position: relative;
+  background: linear-gradient(180deg, rgba(201,168,76,0.04) 0%, transparent 100%);
+  border-bottom: 1px solid var(--gold-border);
+}
+.page-hero::before {
+  content: 'II';
+  position: absolute;
+  bottom: -0.15em; left: 5%;
+  font-family: var(--ff-heading);
+  font-size: 28vw;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,168,76,0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+.page-hero-inner { position: relative; z-index: 2; }
+.page-eyebrow {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+.page-title {
+  font-family: var(--ff-heading);
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+.page-title span {
+  display: block;
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-bright));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-title .outline {
+  background: none;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(245,239,223,0.2);
+}
+
+/* ── CLUBS GRID ─────────────────────────────────── */
+.clubs-section { background: var(--obsidian); }
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2px;
+}
+.club-card {
+  background: var(--panel);
+  border: 1px solid var(--gold-border);
+  border-left: 3px solid var(--gold-deep);
+  padding: 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.club-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.45s;
+}
+.club-card::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: linear-gradient(180deg, var(--gold-deep), var(--gold-bright));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s ease;
+}
+.club-card:hover { transform: translateX(5px); border-color: rgba(201,168,76,0.4); }
+.club-card:hover::before { opacity: 1; }
+.club-card:hover::after { transform: scaleY(1); }
+.club-badge {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+}
+.club-name {
+  font-family: var(--ff-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--ivory);
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.club-years {
+  font-family: var(--ff-body);
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+}
+.club-stats {
+  display: flex;
+  gap: 0;
+  margin-bottom: 2rem;
+  border: 1px solid var(--gold-border);
+  border-top: 2px solid var(--gold);
+}
+.club-stat {
+  flex: 1;
+  text-align: center;
+  padding: 1.2rem 0.5rem;
+  border-right: 1px solid var(--gold-border);
+}
+.club-stat:last-child { border-right: none; }
+.cs-val {
+  font-family: var(--ff-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(201,168,76,0.3));
+}
+.cs-lbl {
+  font-family: var(--ff-body);
+  font-size: 0.6rem;
+  color: var(--ivory-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 0.2rem;
+}
+.club-desc {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ivory-dim);
+  line-height: 1.8;
+}
+
+/* ── AWARDS SECTION ─────────────────────────────── */
+.awards-section {
+  background: linear-gradient(180deg, var(--obsidian) 0%, var(--deep) 100%);
+  border-top: 1px solid var(--gold-border);
+}
+.awards-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 2px;
+  margin-top: 1rem;
+}
+.award-cell {
+  background: var(--panel);
+  border: 1px solid var(--gold-border);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+  transition: var(--transition);
+  overflow: hidden;
+}
+.award-cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.award-cell:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 40px rgba(201,168,76,0.12);
+  transform: translateY(-4px);
+}
+.award-cell:hover::before { opacity: 1; }
+.award-year {
+  font-family: var(--ff-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(201,168,76,0.4));
+}
+.award-name {
+  font-family: var(--ff-body);
+  font-size: 0.6rem;
+  color: var(--ivory-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 0.4rem;
+}
+.award-num {
+  position: absolute;
+  top: 0.6rem; right: 0.8rem;
+  font-family: var(--ff-heading);
+  font-size: 0.5rem;
+  color: rgba(201,168,76,0.25);
+  font-weight: 900;
+}
+.award-cell.special {
+  background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, var(--panel) 100%);
+}
+.award-cell.special .award-year {
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold-bright));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.award-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0.12;
+  filter: grayscale(40%) contrast(1.1);
+  transition: opacity 0.4s;
+  z-index: 0;
+}
+.award-cell:hover .award-bg-img { opacity: 0.22; }
+.award-cell .award-year,
+.award-cell .award-name,
+.award-cell .award-num { position: relative; z-index: 1; }
+
+@media (max-width: 768px) {
+  .clubs-grid { grid-template-columns: 1fr; }
+  .awards-matrix { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+}
+
+/* ── VIDEO SECTION ──────────────────────────────────────────── */
+.video-section {
+  background: linear-gradient(180deg, var(--deep) 0%, var(--obsidian) 100%);
+  border-top: 1px solid var(--gold-border);
+  padding: 6rem 7%;
+}
+
+.video-sub {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ivory-dim);
+  margin-top: 1.5rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.video-wrapper {
+  max-width: 900px;
+  margin: 3.5rem auto 0;
+}
+
+.video-frame-border {
+  position: relative;
+  padding: 4px;                              /* gold border gap */
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-deep));
+  border-radius: 4px;
+  box-shadow:
+    0 0 60px rgba(201,168,76,0.18),
+    0 0 120px rgba(201,168,76,0.07),
+    inset 0 0 0 1px rgba(201,168,76,0.2);
+}
+
+.video-frame-border::before {                /* corner accent — top-left */
+  content: '';
+  position: absolute;
+  top: -8px; left: -8px;
+  width: 28px; height: 28px;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+}
+.video-frame-border::after {                 /* corner accent — bottom-right */
+  content: '';
+  position: absolute;
+  bottom: -8px; right: -8px;
+  width: 28px; height: 28px;
+  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+}
+
+.video-frame-border iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 2px;
+}
+
+.video-caption {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-align: center;
+  margin-top: 1.4rem;
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .video-section { padding: 4rem 5%; }
+}
+</style>
+</head>
+<body>
+
+<div id="lux-cursor"></div>
+<div id="lux-cursor-ring"></div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-brand">LM <em>10</em></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="journey.html">Journey</a></li>
+    <li><a href="career.html" class="active">Career</a></li>
+    <li><a href="legacy.html">Legacy</a></li>
+    <li><a href="fanzone.html">Fan Zone</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+</nav>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="page-hero-img">
+    <img src="assets/images/barcelona-jersey-display.jpg" alt="" aria-hidden="true">
+  </div>
+  <div class="page-hero-inner">
+    <span class="page-eyebrow">02 · Career</span>
+    <h1 class="page-title">
+      <span class="outline">The</span>
+      <span>Career</span>
+    </h1>
+  </div>
+</div>
+
+<!-- Clubs -->
+<section class="clubs-section">
+  <div class="section-header reveal">
+    <span class="section-number">Clubs & Nation</span>
+    <h2 class="section-title">The Shirts<br>of a Legend<div class="fill-text">The Shirts<br>of a Legend</div></h2>
+    <div class="ornament-divider"><div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line"></div></div>
+  </div>
+
+  <div class="clubs-grid">
+    <div class="club-card reveal">
+      <img src="assets/images/messi-barcelona-celebration.jpg" alt="Era photo" class="club-photo" loading="lazy">
+
+      <span class="club-badge">Club I · The Cathedral</span>
+      <div class="club-name">Barcelona</div>
+      <div class="club-years">2004 — 2021</div>
+      <div class="club-stats">
+        <div class="club-stat"><span class="cs-val">778</span><span class="cs-lbl">Apps</span></div>
+        <div class="club-stat"><span class="cs-val">672</span><span class="cs-lbl">Goals</span></div>
+        <div class="club-stat"><span class="cs-val">303</span><span class="cs-lbl">Assists</span></div>
+      </div>
+      <p class="club-desc">Seventeen years of uninterrupted magic. Ten La Liga titles. Four Champions League trophies. A record 50+ hat-tricks in a single club. The Camp Nou became a cathedral, and Messi — its only deity.</p>
+    </div>
+
+    <div class="club-card reveal">
+      <img src="assets/images/messi-psg.jpg" alt="Era photo" class="club-photo" loading="lazy">
+
+      <span class="club-badge">Club II · The Crucible</span>
+      <div class="club-name">PSG</div>
+      <div class="club-years">2021 — 2023</div>
+      <div class="club-stats">
+        <div class="club-stat"><span class="cs-val">75</span><span class="cs-lbl">Apps</span></div>
+        <div class="club-stat"><span class="cs-val">32</span><span class="cs-lbl">Goals</span></div>
+        <div class="club-stat"><span class="cs-val">35</span><span class="cs-lbl">Assists</span></div>
+      </div>
+      <p class="club-desc">A transitional chapter in the City of Light. Even constrained, the brilliance flickered through. Messi used Paris as the crucible that forged his World Cup mental fortitude. Preparation complete.</p>
+    </div>
+
+    <div class="club-card reveal">
+      <img src="assets/images/messi-inter-miami.webp" alt="Era photo" class="club-photo" loading="lazy">
+
+      <span class="club-badge">Club III · The New World</span>
+      <div class="club-name">Inter Miami</div>
+      <div class="club-years">2023 — Present</div>
+      <div class="club-stats">
+        <div class="club-stat"><span class="cs-val">60+</span><span class="cs-lbl">Apps</span></div>
+        <div class="club-stat"><span class="cs-val">40+</span><span class="cs-lbl">Goals</span></div>
+        <div class="club-stat"><span class="cs-val">25+</span><span class="cs-lbl">Assists</span></div>
+      </div>
+      <p class="club-desc">The legend rewrites American football. A city falls in love overnight. Herons FC becomes the hottest ticket in sport. The game is still beautiful. The feet still dance. The story continues.</p>
+    </div>
+
+    <div class="club-card reveal">
+      <img src="assets/images/messi-argentina-2.jpg" alt="Era photo" class="club-photo" loading="lazy">
+
+      <span class="club-badge">Nation · The Eternal Shirt</span>
+      <div class="club-name">Argentina</div>
+      <div class="club-years">2005 — Present</div>
+      <div class="club-stats">
+        <div class="club-stat"><span class="cs-val">190+</span><span class="cs-lbl">Caps</span></div>
+        <div class="club-stat"><span class="cs-val">109+</span><span class="cs-lbl">Goals</span></div>
+        <div class="club-stat"><span class="cs-val">3</span><span class="cs-lbl">Copa Américas</span></div>
+      </div>
+      <p class="club-desc">The shirt he was born to wear. The impossible wait. Then: Qatar 2022. The whole nation exhales. A generation's prayer answered. All-time top scorer for the Albiceleste. Eternal captain. Eternal son.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Ballon d'Or -->
+
+<!-- Image Strip -->
+<div class="image-strip">
+  <div class="image-strip-item">
+    <img src="assets/images/messi-barcelona-portrait.jpg" alt="Barcelona" loading="lazy">
+  </div>
+  <div class="image-strip-item">
+    <img src="assets/images/messi-barcelona-splatter.jpg" alt="Ballon d'Or" loading="lazy">
+  </div>
+  <div class="image-strip-item">
+    <img src="assets/images/messi-barcelona-neon.jpg" alt="Barcelona Neon" loading="lazy">
+  </div>
+  <div class="image-strip-item">
+    <img src="assets/images/messi-barcelona-dribble.jpg" alt="Dribbling" loading="lazy">
+  </div>
+</div>
+
+<section class="awards-section" style="position:relative;overflow:hidden;">
+  <div class="bg-img" style="position:absolute;inset:0;z-index:0;">
+    <img src="assets/images/messi-red-dramatic.jpg" alt="" aria-hidden="true" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0.06;filter:grayscale(20%);">
+  </div>
+  <div class="section-header reveal">
+    <span class="section-number">Individual Honours</span>
+    <h2 class="section-title">Ballon d'Or<br>Registry<div class="fill-text">Ballon d'Or<br>Registry</div></h2>
+    <div class="ornament-divider"><div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line"></div></div>
+    <p style="font-family:var(--ff-display);font-style:italic;color:var(--ivory-dim);margin-top:1.5rem;font-size:1rem;">Eight Ballon d'Or awards — a record unmatched in the history of football</p>
+  </div>
+
+  <div class="awards-matrix reveal">
+    <div class="award-cell"><img class="award-bg-img" src="assets/images/messi2009.jpeg" alt="" aria-hidden="true" loading="lazy"><span class="award-year">2009</span><span class="award-name">Ballon d'Or</span><span class="award-num">#01</span></div>
+    <div class="award-cell"><img class="award-bg-img" src="assets/images/messi2010.jpeg" alt="" aria-hidden="true" loading="lazy"><span class="award-year">2010</span><span class="award-name">Ballon d'Or</span><span class="award-num">#02</span></div>
+    <div class="award-cell"><img class="award-bg-img" src="assets/images/messi2011.jpeg" alt="" aria-hidden="true" loading="lazy"><span class="award-year">2011</span><span class="award-name">Ballon d'Or</span><span class="award-num">#03</span></div>
+    <div class="award-cell"><img class="award-bg-img" src="assets/images/messi2012.jpeg" alt="" aria-hidden="true" loading="lazy"><span class="award-year">2012</span><span class="award-name">Ballon d'Or</span><span class="award-num">#04</span></div>
+    <div class="award-cell"><img class="award-bg-img" src="assets/images/messi2015.jpeg" alt="" aria-hidden="true" loading="lazy"><span class="award-year">2015</span><span class="award-name">Ballon d'Or</span><span class="award-num">#05</span></div>
+    <div class="award-cell"><img class="award-bg-img" src="assets/images/messi2019.jpeg" alt="" aria-hidden="true" loading="lazy"><span class="award-year">2019</span><span class="award-name">Ballon d'Or</span><span class="award-num">#06</span></div>
+    <div class="award-cell"><img class="award-bg-img" src="assets/images/messi2021.jpeg" alt="" aria-hidden="true" loading="lazy"><span class="award-year">2021</span><span class="award-name">Ballon d'Or</span><span class="award-num">#07</span></div>
+    <div class="award-cell special"><img class="award-bg-img" src="assets/images/messi2023.jpeg" alt="" aria-hidden="true" loading="lazy"><span class="award-year">2023</span><span class="award-name">World Cup Edition</span><span class="award-num">#08</span></div>
+  </div>
+</section>
+
+<!-- ── VIDEO SECTION ─────────────────────────────────────────── -->
+<section class="video-section reveal">
+  <div class="section-header">
+    <span class="section-number">The Highlight Reel</span>
+    <h2 class="section-title">Watch the<br>Magic Unfold<div class="fill-text">Watch the<br>Magic Unfold</div></h2>
+    <div class="ornament-divider"><div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line"></div></div>
+    <p class="video-sub">Every touch. Every dribble. Every goal. Witness why the debate was never really a debate.</p>
+  </div>
+
+  <div class="video-wrapper">
+    <div class="video-frame-border">
+      <iframe
+        src="https://youtu.be/nFg0N_JesWs?si=gTcQYb2B9XAfRu94"
+        title="Messi — The Highlight Reel"
+        frameborder="0"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <p class="video-caption">▶ &nbsp; Press play — and remember why you fell in love with football.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">LM<span style="font-size:1.8em;color:var(--ivory-dim);font-family:var(--ff-display);font-style:italic;">10</span></div>
+      <p class="footer-desc">A luxury tribute to the greatest footballer to ever grace the beautiful game. Built by fans, for fans.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Archive</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="journey.html">Journey</a></li>
+        <li><a href="career.html">Career</a></li>
+        <li><a href="legacy.html">Legacy</a></li>
+        <li><a href="fanzone.html">Fan Zone</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Highlights</h4>
+      <ul>
+        <li><a href="career.html">Statistics</a></li>
+        <li><a href="legacy.html">World Records</a></li>
+        <li><a href="fanzone.html">Trivia Quiz</a></li>
+        <li><a href="journey.html">Timeline</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024–2026 Messi Luxury Archive · All Rights Reserved</span>
+    <span class="footer-sig">GOAT Status: Confirmed · Eternal</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
